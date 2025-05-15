@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack a Sonic</title>
+    <link rel="stylesheet" href="css/whack.css">
+</head>
+<body>
+    <div class="BTN">
+        <button class="wBtn" onclick='window.location.href = "index.html"'>back</button>
+    </div>
+    <div class="container">
+        <h1>Whack-a-Game</h1>
+        <div class="rules">
+            <h2>Spelregels</h2>
+            <p>Klik op groene vak om punten te verdienen.</p>
+            <p>Vermijd het klikken op de rode vak, anders is het spel afgelopen!</p>
+            <p>Je hebt 1 minuut de tijd. Het spel versnelt naar 2x in de laatste 20 seconden.</p>
+        </div>
+        <div class="game-board">
+            <div class="hole" id="hole1"></div>
+            <div class="hole" id="hole2"></div>
+            <div class="hole" id="hole3"></div>
+            <div class="hole" id="hole4"></div>
+            <div class="hole" id="hole5"></div>
+            <div class="hole" id="hole6"></div>
+            <div class="hole" id="hole7"></div>
+            <div class="hole" id="hole8"></div>
+            <div class="hole" id="hole9"></div>
+        </div>
+        <div class="score-board">
+            Score: <span id="score">0</span>
+        </div>
+        <div class="timer">
+            Tijd: <span id="timer">60</span> seconden
+        </div>
+        <div id="game-over" class="hidden">
+            <h2>Game Over</h2>
+            <p>Je bent dood. Het spel zal opnieuw starten...</p>
+        </div>
+    </div>
+    <script src="js/whack.js"></script>
+</body>
+</html>

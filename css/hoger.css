@@ -1,0 +1,135 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: lightyellow;
+    color:white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+ background-image: url(../img/image.png);
+  background-size: cover;
+  background-size: 100%;
+}
+ 
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:rgb(24, 131, 24);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+ 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+ 
+#leaderboard, #spin-section {
+    width: 45%;
+    background-color:rgb(15, 155, 20);
+    padding: 10px;
+    border: 1px solid rgb(15, 155, 20);
+    border-radius: 8px;
+}
+ 
+#leaderboard h2, #spin-section h2 {
+    margin: 0;
+    color: white;
+}
+ 
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ 
+#leaderboard-list li {
+    padding: 5px 0;
+    font-size: 16px;
+}
+ 
+h1 {
+    color: white;
+    margin: 40px 0 20px;
+}
+ 
+#game-area {
+    margin-top: 20px;
+}
+ 
+#dice-area {
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+}
+ 
+#controls button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+ 
+#higher {
+    background-color: #28a745;
+    color: white;
+}
+ 
+#lower {
+    background-color: #dc3545;
+    color: white;
+}
+ 
+#scoreboard {
+    margin-top: 20px;
+    background-color: rgb(15, 155, 20);
+    padding: 15px;
+    border: 1px solid rgb(15, 155, 20);
+    border-radius: 8px;
+}
+ 
+#spin-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:lightgreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ 
+#spin-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+ 
+.hidden {
+    display: none;
+}
+ 
+footer {
+    margin-top: 40px;
+    background-color:rgb(15, 155, 20);
+    padding: 20px;
+    border: 1px solid rgb(15, 155, 20);
+    border-radius: 8px;
+}
+ 
+footer h2 {
+    color:white;
+    margin-bottom: 10px;
+}
+ 
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+ 
+footer ul li {
+    padding: 5px 0;
+    font-size: 16px;
+}
