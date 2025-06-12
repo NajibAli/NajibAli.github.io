@@ -133,3 +133,26 @@ footer ul li {
     padding: 5px 0;
     font-size: 16px;
 }
+
+
+.backbtn{
+    display: flex;
+    justify-self: start;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: green;
+    font-size: medium;
+    font-weight: bold;
+    color:white;
+    border: none;
+}
+
+.backbtn:hover{
+ color: white;
+ background-color: lightgreen;
+ border: none;
+}
