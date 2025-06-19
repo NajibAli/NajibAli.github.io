@@ -1,13 +1,13 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
-        background-color: black;
-    }
+body {
+    background-color: black;
+}
 
-h1{
+h1 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -15,16 +15,16 @@ h1{
     color: rgb(224, 68, 68);
     text-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 10px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.3);
 }
- 
-.board{
+
+.board {
     display: grid;
     grid-template-columns: repeat(3, 140px);
     justify-content: center;
     margin: 20px auto;
-    
+
 }
- 
-.items{
+
+.items {
     width: 140px;
     height: 140px;
     background-color: black;
@@ -39,30 +39,30 @@ h1{
     color: #fff;
     /* border: 10px solid transparent;  */
 }
- 
-.Restart{    
-display: flex;
-justify-self: center;
-margin-top: 20px;
-padding: 10px 20px;
-font-size: 16px;
-cursor: grabbing;
-border: 2px solid black;
-background-color: whitesmoke;
-border-radius: 10%;
+
+.Restart {
+    display: flex;
+    justify-self: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: grabbing;
+    border: 2px solid black;
+    background-color: whitesmoke;
+    border-radius: 10%;
 }
 
-.Restart:hover{
+.Restart:hover {
     color: black;
-    background-color:rgb(90, 92, 211);
+    background-color: rgb(90, 92, 211);
     cursor: pointer;
     box-shadow: 0 0 13px rgb(90, 92, 211);
     border: none;
-    
+
 }
 
-.backBtn{
-    
+.backBtn {
+
     width: 100px;
     height: 30px;
     font-size: medium;
@@ -70,14 +70,14 @@ border-radius: 10%;
     margin: 10px;
     border: 2px solid black;
     border-radius: 25%;
-    
-    
+
+
 }
 
-.backBtn:hover{
-    background-color:rgb(224, 68, 68);
+.backBtn:hover {
+    background-color: rgb(224, 68, 68);
     cursor: pointer;
     box-shadow: 0 0 15px rgb(224, 68, 68);
     border: none;
-    
+
 }
