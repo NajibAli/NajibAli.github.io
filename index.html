@@ -54,136 +54,111 @@
         </div>
     </section>
 
-    <!-- Skills Section with icons and progress bars -->
+    <!-- Skills Section: structured categories -->
     <section id="skills" class="mb-5">
-        <h2 class="section-title">Skills</h2>
-
-        <!-- HTML5 Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">HTML5</p>
-                <div class="progress" style="height: 20px">
-                    <div id="html5" class="progress-bar bg-danger" role="progressbar" style="width: 80%"
-                        aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
-                        80%
+        <h2 class="section-title">Vaardigheden</h2>
+        <div class="container">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">Webdevelopment</h3>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-icon">
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="progress" aria-label="HTML5 level">
+                            <div class="progress-bar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                        </div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-icon">
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="progress" aria-label="CSS3 level">
+                            <div class="progress-bar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                        </div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="progress" aria-label="JavaScript level">
+                            <div class="progress-bar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                        </div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" class="skill-icon">
+                            <span class="skill-name">Bootstrap</span>
+                        </div>
+                        <div class="progress" aria-label="Bootstrap level">
+                            <div class="progress-bar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- CSS3 Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">CSS3</p>
-                <div class="progress" style="height: 20px">
-                    <div id="css3" class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="64"
-                        aria-valuemin="0" aria-valuemax="100">
-                        75%
+                <div class="skill-category">
+                    <h3 class="category-title">Backend basis</h3>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="skill-icon">
+                            <span class="skill-name">PHP</span>
+                        </div>
+                        <div class="progress" aria-label="PHP level">
+                            <div class="progress-bar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                        </div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="skill-icon">
+                            <span class="skill-name">SQL</span>
+                        </div>
+                        <div class="progress" aria-label="SQL level">
+                            <div class="progress-bar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">68%</div>
+                        </div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="skill-icon">
+                            <span class="skill-name">Linux</span>
+                        </div>
+                        <div class="progress" aria-label="Linux level">
+                            <div class="progress-bar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- JavaScript Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript" class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">JavaScript</p>
-                <div class="progress" style="height: 20px">
-                    <div id="javascript" class="progress-bar bg-warning text-dark" role="progressbar" style="width: 49%"
-                        aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
-                        49%
+                <div class="skill-category">
+                    <h3 class="category-title">Frameworks</h3>
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="skill-icon">
+                            <span class="skill-name">Next.js</span>
+                        </div>
+                        <div class="progress" aria-label="Next.js level">
+                            <div class="progress-bar" style="width: 50%; background:#000;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bootstrap Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">Bootstrap</p>
-                <div class="progress" style="height: 20px">
-                    <div id="bootstrap" class="progress-bar bg-dark-subtle" role="progressbar" style="width: 80%"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                        80%
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="skill-icon">
+                            <span class="skill-name">Symfony</span>
+                        </div>
+                        <div class="progress" aria-label="Symfony level">
+                            <div class="progress-bar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PHP Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">PHP</p>
-                <div class="progress" style="height: 20px">
-                    <div id="php" class="progress-bar bg-primary-subtle" role="progressbar" style="width: 65%"
-                        aria-valuenow="43" aria-valuemin="0" aria-valuemax="100">
-                        65%
+                    <div class="skill-row">
+                        <div class="skill-meta">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS" class="skill-icon">
+                            <span class="skill-name">Tailwind CSS</span>
+                        </div>
+                        <div class="progress" aria-label="Tailwind level">
+                            <div class="progress-bar" style="width: 80%; background:#06b6d4;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Next.js</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar" role="progressbar" style="width: 45%; background:#000;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Symfony</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Linux</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="skill-item d-flex align-items-center mb-3">
-            <div class="skill-icon me-3" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M2 12C6 6 10 6 14 4.5C18 3 22 4 22 4" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 18C6 12 10 12 14 10.5C18 9 22 10 22 10" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Tailwind CSS</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar" role="progressbar" style="width: 80%; background:#06b6d4;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">SQL</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">68%</div>
                 </div>
             </div>
         </div>
