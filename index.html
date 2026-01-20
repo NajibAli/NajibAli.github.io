@@ -292,84 +292,49 @@
     </section>
 
     <!-- Contact Sectie -->
-    <section id="contact" class="py-5">
+    <section id="contact" class="contact">
       <div class="container">
-        <h2 class="text-center mb-4">Contact</h2>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" required />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" required />
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea
-              class="form-control"
-              id="message"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send</button>
-        </form>
+        <h2>Contact</h2>
+
+        <div class="contact-content">
+          <form class="contact-form">
+            <input type="text" placeholder="Je naam" required />
+            <input type="email" placeholder="Je email" required />
+            <textarea placeholder="Je bericht" rows="5" required></textarea>
+            <button type="submit" class="btn-primary">Verstuur Bericht</button>
+          </form>
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-      <p>Portfolio van Najib Ali &copy;</p>
+    <footer>
       <div class="container">
-        <nav class="social-icons" aria-label="Social media links">
-          <!-- GitHub link -->
-          <a
-            href="https://github.com/NajibAli/NajibAli.github.io"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-          >
-            <svg
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="currentColor"
-              class="bi bi-github"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 0C3.58 0 0 3.58 0 8a8.01 8.01 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.49-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 1.24.84 1.24.84.72 1.23 1.87.88 2.33.67.07-.52.28-.88.5-1.08-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.72 7.72 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-              />
-            </svg>
-          </a>
-          <!-- LinkedIn link -->
-          <a
-            href="https://www.linkedin.com/in/najib-ali-7b20a7367/"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-          >
-            <svg
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="currentColor"
-              class="bi bi-linkedin"
-              viewBox="0 0 16 16"
-            >
-              <title>LinkedIn</title>
-              <path
-                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.473 0 16 .513 16 1.146v13.708c0 .633-.527 1.146-1.175 1.146H1.175C.527 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c-.837 0-1.356-.555-1.356-1.248 0-.707.535-1.248 1.388-1.248.853 0 1.356.541 1.372 1.248 0 .693-.52 1.248-1.404 1.248h-.001zm4.908 8.212h2.4v-4.168c0-.223.016-.447.082-.606.18-.447.591-.911 1.281-.911.903 0 1.266.688 1.266 1.697v3.988h2.4V9.98c0-2.22-1.182-3.252-2.763-3.252-1.28 0-1.845.7-2.165 1.193v.025h-.016a5.01 5.01 0 0 1 .016-.025V6.169h-2.4c.03.716 0 7.225 0 7.225z"
-              />
-            </svg>
-          </a>
-        </nav>
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3>Najib Ali</h3>
+            <p>Software Developer Student</p>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/NajibAli" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/najib-ali" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <p class="copyright">© 2024 Najib Ali. Gemaakt door een leerling.</p>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script src="js/index.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
   </body>
 </html>

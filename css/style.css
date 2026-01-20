@@ -1,10 +1,8 @@
-:root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-color: #f9f9f9;
-  --highlight-color: #0056b3;
-  --text-color: #212529;
-  --accent-color: #17a2b8;
+/* Basis stijlen */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -24,9 +22,7 @@ section {
   padding: 80px 0;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   color: #2c3e50;
 }
 
@@ -40,7 +36,7 @@ h2 {
 .navbar {
   background: white;
   padding: 20px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   position: fixed;
   width: 100%;
   top: 0;
@@ -73,7 +69,7 @@ h2 {
 
 /* Home sectie */
 .home {
-  background: linear-gradient(135deg, #30d9f7 0%, #4b9fa2 100%);
+  background: linear-gradient(135deg, #115d91 0%, #9bd4ee 100%);
   color: white;
   padding-top: 100px;
   min-height: 100vh;
@@ -100,7 +96,7 @@ h2 {
   width: 100%;
   max-width: 400px;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
 .home h1 {
@@ -123,7 +119,7 @@ h2 {
 }
 
 .tags span {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.1);
   padding: 10px 20px;
   border-radius: 50px;
   display: flex;
@@ -149,13 +145,13 @@ h2 {
 }
 
 .btn-primary {
-  background: rgb(255, 255, 255);
-  color: #667eea;
+  background: rgb(25, 10, 238);
+  color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .btn-secondary {
@@ -165,11 +161,10 @@ h2 {
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.1);
 }
 
 /* Over Mij sectie */
-
 .about-content {
   display: flex;
   align-items: center;
@@ -189,7 +184,7 @@ h2 {
   width: 100%;
   max-width: 400px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .about h3 {
@@ -215,7 +210,7 @@ h2 {
   background: #f8f9fa;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .skill-category h3 {
@@ -251,7 +246,6 @@ h2 {
 }
 
 /* Projecten sectie */
-
 .projects {
   background: #f8f9fa;
 }
@@ -266,7 +260,7 @@ h2 {
   background: white;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
 
@@ -348,97 +342,107 @@ h2 {
   cursor: not-allowed;
 }
 
-.contact-section {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 3rem 1rem;
-  text-align: center;
-  box-shadow: inset 0 0 40px rgba(23, 162, 184, 0.85);
+/* Contact sectie */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.contact-section a {
-  color: #d0f0fc;
-  text-decoration: underline;
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.contact-form button {
+  padding: 15px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.contact-section a:hover {
-  color: white;
-  text-decoration: none;
+.contact-form button:hover {
+  background: #2980b9;
 }
 
+/* Footer */
 footer {
-  background-color: var(--secondary-color);
+  background: #2c3e50;
   color: white;
-  padding: 1rem;
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  padding: 50px 0 20px;
 }
 
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #3498db;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-  .about-row {
-    flex-direction: column-reverse;
+  .home-content,
+  .about-content {
+    flex-direction: column;
     text-align: center;
   }
 
-  .about-text {
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
-    color: var(--text-color);
+  .home-image,
+  .about-image {
+    order: -1;
   }
 
-  .about-img {
-    max-width: 240px;
-    margin-bottom: 2rem;
-    border: 4px solid var(--primary-color);
+  .home h1 {
+    font-size: 2.5rem;
   }
-}
 
-/* Footer social icons container styles */
-footer .social-icons {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
+  .buttons {
+    flex-direction: column;
+  }
 
-/* Social icon links base styles with spacing and sizing */
-footer .social-icons a {
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
-  text-decoration: none;
-}
+  .nav-menu {
+    display: none;
+  }
 
-
-/* SVG icons inside social links with subtle shadow */
-footer .social-icons a svg {
-  width: 24px;
-  height: 24px;
-  transition: filter 0.3s ease;
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.3));
-}
-
-/* Hover effect for social icons */
-footer .social-icons a:hover {
-  background-color: #0d6efd;
-  box-shadow: 0 4px 14px rgba(13, 110, 253, 0.9);
-  transform: scale(1.15);
-}
-
-/* Glow effect on social icon SVG on hover */
-footer .social-icons a:hover svg {
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.9));
+  h2 {
+    font-size: 2rem;
+  }
 }
