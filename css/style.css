@@ -250,58 +250,102 @@ h2 {
   border-radius: 5px;
 }
 
-.projects-container {
-  max-width: 960px;
-  margin: 0 auto;
+/* Projecten sectie */
+
+.projects {
+  background: #f8f9fa;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
 .project-card {
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.22);
 }
 
-.project-img {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  height: 180px;
+.project-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-image img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: filter 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
-.project-img:hover {
-  filter: brightness(1.1);
+.project-card:hover .project-image img {
+  transform: scale(1.1);
 }
 
-.card-body h5 {
-  font-weight: 700;
-  color: var(--primary-color);
+.project-content {
+  padding: 25px;
 }
 
-.card-body p {
-  color: var(--secondary-color);
-  font-size: 0.95rem;
-  margin-bottom: 1.25rem;
+.project-content h3 {
+  margin-bottom: 15px;
+  color: #2c3e50;
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
+.project-content p {
+  color: #666;
+  margin-bottom: 20px;
+  min-height: 60px;
+}
+
+.tech-used {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.tech-used span {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.project-buttons {
+  display: flex;
+  margin-top: 15px;
+}
+
+.btn-project {
+  flex: 1;
+  padding: 12px;
+  background: #3498db;
+  color: white;
   border: none;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: var(--highlight-color);
-  box-shadow: 0 8px 20px var(--highlight-color);
+.btn-project:hover {
+  background: #2980b9;
+}
+
+.btn-project:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
 }
 
 .contact-section {
