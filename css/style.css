@@ -343,43 +343,81 @@ h2 {
 }
 
 /* Contact sectie */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
+/* Contact sectie */
+.contact {
+  background: #f8f9fa;
+}
+
+.contact .subtitle {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+}
+
+.contact-item {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   display: flex;
-  flex-direction: column;
   gap: 20px;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 15px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #3498db;
-}
-
-.contact-form button {
-  padding: 15px;
-  background: #3498db;
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  font-size: 1.5rem;
 }
 
-.contact-form button:hover {
-  background: #2980b9;
+.contact-details h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #2c3e50;
 }
+
+.contact-details p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.contact-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #2980b9;
+  gap: 10px;
+}
+
+
 
 /* Footer */
 footer {
@@ -445,4 +483,18 @@ footer {
   h2 {
     font-size: 2rem;
   }
+}
+
+/* Responsive aanpassingen voor contact sectie */
+@media (max-width: 768px) {
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .contact-item {
+    padding: 20px;
+  }
+  
+  
 }
