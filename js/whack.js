@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Go to menu
     function goToMenu() {
-        window.location.href = 'index.html';
+        window.location.href = '/index.html';
     }
     
     // Reset game state

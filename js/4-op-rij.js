@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     closeModalButton.addEventListener('click', () => {
       winModal.style.display = 'none';
-      window.location.href = 'index.html';
+      window.location.href = '/index.html';
     });
     
     // Column indicators
