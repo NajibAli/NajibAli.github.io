@@ -9,34 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeHole = null;
     let soundEnabled = true;
     
-    // Game elements
+    // Game elements using querySelector
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.querySelector('.score-display');
     const timerDisplay = document.querySelector('.timer-display');
     const speedDisplay = document.querySelector('.speed-display');
-    const gameStatus = document.getElementById('game-status');
-    const highScoreDisplay = document.getElementById('high-score');
-    const gameOverModal = document.getElementById('game-over-modal');
-    const winModal = document.getElementById('win-modal');
-    const finalScoreDisplay = document.getElementById('final-score');
-    const winScoreDisplay = document.getElementById('win-score');
-    const resultMessage = document.getElementById('result-message');
+    const gameStatus = document.querySelector('#game-status');
+    const highScoreDisplay = document.querySelector('#high-score');
+    const gameOverModal = document.querySelector('#game-over-modal');
+    const winModal = document.querySelector('#win-modal');
+    const finalScoreDisplay = document.querySelector('#final-score');
+    const winScoreDisplay = document.querySelector('#win-score');
+    const resultMessage = document.querySelector('#result-message');
     
     // Buttons
-    const startBtn = document.getElementById('start-btn');
-    const pauseBtn = document.getElementById('pause-btn');
-    const soundToggleBtn = document.getElementById('sound-toggle');
-    const restartBtn = document.getElementById('restart-btn');
-    const playAgainBtn = document.getElementById('play-again-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const backToMenuBtn = document.getElementById('back-to-menu-btn');
+    const startBtn = document.querySelector('#start-btn');
+    const pauseBtn = document.querySelector('#pause-btn');
+    const soundToggleBtn = document.querySelector('#sound-toggle');
+    const restartBtn = document.querySelector('#restart-btn');
+    const playAgainBtn = document.querySelector('#play-again-btn');
+    const menuBtn = document.querySelector('#menu-btn');
+    const backToMenuBtn = document.querySelector('#back-to-menu-btn');
     
     // Audio elements
-    const clickSound = document.getElementById('click-sound');
-    const sonicSound = document.getElementById('sonic-sound');
-    const eggmanSound = document.getElementById('eggman-sound');
-    const gameOverSound = document.getElementById('game-over-sound');
-    const timerSound = document.getElementById('timer-sound');
+    const clickSound = document.querySelector('#click-sound');
+    const sonicSound = document.querySelector('#sonic-sound');
+    const eggmanSound = document.querySelector('#eggman-sound');
+    const gameOverSound = document.querySelector('#game-over-sound');
+    const timerSound = document.querySelector('#timer-sound');
     
     // Game intervals
     let gameInterval = null;

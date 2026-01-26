@@ -13,27 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   let soundEnabled = true;
   
-  // DOM elements
-  const boardElement = document.getElementById('board');
-  const currentPlayerElement = document.getElementById('current-player');
-  const scoreRedElement = document.getElementById('score-red');
-  const scoreYellowElement = document.getElementById('score-yellow');
-  const gameStatusElement = document.getElementById('game-status');
-  const resetButton = document.getElementById('reset-btn');
-  const soundToggleButton = document.getElementById('sound-toggle');
-  const winModal = document.getElementById('win-modal');
-  const winTitle = document.getElementById('win-title');
-  const winPlayerElement = document.getElementById('win-player');
-  const playAgainButton = document.getElementById('play-again-btn');
-  const closeModalButton = document.getElementById('close-modal-btn');
+  // DOM elements using querySelector
+  const boardElement = document.querySelector('#board');
+  const currentPlayerElement = document.querySelector('#current-player');
+  const scoreRedElement = document.querySelector('#score-red');
+  const scoreYellowElement = document.querySelector('#score-yellow');
+  const gameStatusElement = document.querySelector('#game-status');
+  const resetButton = document.querySelector('#reset-btn');
+  const soundToggleButton = document.querySelector('#sound-toggle');
+  const winModal = document.querySelector('#win-modal');
+  const winTitle = document.querySelector('#win-title');
+  const winPlayerElement = document.querySelector('#win-player');
+  const playAgainButton = document.querySelector('#play-again-btn');
+  const closeModalButton = document.querySelector('#close-modal-btn');
   const columnIndicators = document.querySelectorAll('.column-indicator');
   
   // Audio elements
-  const dropSound = document.getElementById('drop-sound');
-  const winSound = document.getElementById('win-sound');
-  const drawSound = document.getElementById('draw-sound');
-  
-  
+  const dropSound = document.querySelector('#drop-sound');
+  const winSound = document.querySelector('#win-sound');
+  const drawSound = document.querySelector('#draw-sound');
   
   // Initialize the game
   function initGame() {
