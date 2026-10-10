@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found | Najib Ali</title>
+  <meta name="description" content="This page doesn't exist or has moved. Go back to the portfolio of Najib Ali.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Page not found | Najib Ali">
+  <meta property="og:description" content="This page doesn't exist or has moved.">
+  <meta property="og:url" content="https://najibali.github.io/404.html">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      try { theme = localStorage.getItem('theme'); } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <script type="module" src="/js/not-found.js"></script>
+</head>
+<body class="not-found-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <canvas class="scene" id="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Najib Ali, back to the homepage">
+      <span class="brand__dot" aria-hidden="true"></span>
+      Najib Ali
+    </a>
+    <div class="site-header__end">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="/assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="/assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="not-found">
+    <h1 class="not-found__code display" data-reveal="letters">404</h1>
+    <p class="not-found__title">Page not found</p>
+    <p class="not-found__text">This page doesn't exist or has moved.</p>
+    <a class="btn btn--solid" href="/" data-cursor="Open">Back to the homepage</a>
+  </main>
+
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>

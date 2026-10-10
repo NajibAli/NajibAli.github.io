@@ -278,8 +278,10 @@ body {
   letter-spacing: -0.045em;
   font-weight: 800;
   font-stretch: 125%;
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--fg) 45%, transparent);
+  /* Outline made from shadows behind a background-coloured fill, so the variable font's overlapping contours never show through */
+  --outline: color-mix(in srgb, var(--fg) 40%, var(--bg));
+  color: var(--bg);
+  text-shadow: -1px -1px 0 var(--outline), 1px -1px 0 var(--outline), -1px 1px 0 var(--outline), 1px 1px 0 var(--outline), 0 -1px 0 var(--outline), 0 1px 0 var(--outline), -1px 0 0 var(--outline), 1px 0 0 var(--outline);
 }
 
 /* The filled copy wipes in from the left on hover */
@@ -288,7 +290,7 @@ body {
   position: absolute;
   inset: 0;
   color: var(--fg);
-  -webkit-text-stroke: 0;
+  text-shadow: none;
   clip-path: inset(0 100% 0 0);
   transition: clip-path 0.9s var(--ease-out);
 }
@@ -301,7 +303,7 @@ body {
 @media (hover: none) {
   .next-project__title {
     color: var(--fg);
-    -webkit-text-stroke: 0;
+    text-shadow: none;
   }
 
   .next-project__title::after {

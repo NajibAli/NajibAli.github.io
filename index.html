@@ -1,360 +1,244 @@
-<!DOCTYPE html>
-<html lang="nl">
-
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portfolio Najib Ali</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Najib Ali, software development student</title>
+  <meta name="description" content="Najib Ali is a software development student who builds websites and games. See his projects and get in touch.">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Najib Ali, software development student">
+  <meta property="og:description" content="Najib Ali is a software development student who builds websites and games. See his projects and get in touch.">
+  <meta property="og:url" content="https://najibali.github.io/">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://najibali.github.io/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        theme = localStorage.getItem('theme');
+        if (sessionStorage.getItem('curtain') === '1') root.classList.add('is-covered');
+        if (sessionStorage.getItem('introPlayed') === '1') root.classList.add('intro-seen');
+      } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!reduced) root.classList.add('motion');
+      if (reduced) root.classList.add('intro-seen');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script type="module" src="js/home.js"></script>
 </head>
+<body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<body>
-     <!-- Navigatie -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#home" class="logo">Portfolio</a>
-            <div class="nav-menu">
-                <a href="#home">Home</a>
-                <a href="#about">Over Mij</a>
-                <a href="#skills">Vaardigheden</a>
-                <a href="#projects">Projecten</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
+  <!-- Chromatic split used on project frames while hovered -->
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+    <filter id="chroma-split" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
+      <feOffset in="SourceGraphic" dx="3" result="shifted-right"/>
+      <feColorMatrix in="shifted-right" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0.4 0 0.4 0 0  0 0 0 1 0" result="pink"/>
+      <feOffset in="SourceGraphic" dx="-3" result="shifted-left"/>
+      <feColorMatrix in="shifted-left" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" result="aqua"/>
+      <feBlend in="pink" in2="aqua" mode="screen" result="split"/>
+      <feBlend in="split" in2="SourceGraphic" mode="lighten"/>
+    </filter>
+  </svg>
+
+  <canvas class="scene" id="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" aria-hidden="true"></div>
+
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader__top">
+      <span>Najib Ali</span>
+      <span>Portfolio 2026</span>
+    </div>
+    <div class="loader__line"><span class="loader__fill" id="loader-fill"></span></div>
+    <div class="loader__bottom">
+      <span class="loader__count display" id="loader-count" aria-label="Loading">000</span>
+      <p class="loader__hint">Loading the experience. Move your mouse once it starts.</p>
+    </div>
+  </div>
+  <noscript><style>.loader { display: none; } [data-reveal] { opacity: 1 !important; animation: none !important; }</style></noscript>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#top" aria-label="Najib Ali, back to the top">
+      <span class="brand__dot" aria-hidden="true"></span>
+      Najib Ali
+    </a>
+    <div class="site-header__end">
+      <nav class="nav" aria-label="Main">
+        <a href="#about"><span class="roll"><span>About</span><span aria-hidden="true">About</span></span></a>
+        <a href="#work"><span class="roll"><span>Work</span><span aria-hidden="true">Work</span></span></a>
+        <a href="#skills"><span class="roll"><span>Skills</span><span aria-hidden="true">Skills</span></span></a>
+        <a href="#contact"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
+      </nav>
+      <button class="menu-button" type="button" id="menu-open" aria-haspopup="dialog" aria-controls="menu">Menu</button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <dialog class="menu" id="menu" aria-label="Menu">
+    <button class="icon-btn menu__close" type="button" id="menu-close" aria-label="Close menu">
+      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#close"/></svg>
+    </button>
+    <nav class="menu__links" aria-label="Menu">
+      <a href="#about"><span>About</span></a>
+      <a href="#work"><span>Work</span></a>
+      <a href="#skills"><span>Skills</span></a>
+      <a href="#contact"><span>Contact</span></a>
     </nav>
+  </dialog>
 
-    <!-- Home Sectie -->
-    <section id="home" class="home">
-        <div class="container">
-            <div class="home-content">
-                <div class="home-text">
-                    <h1>Najib Ali</h1>
-                    <p class="subtitle">Software Developer Student</p>
-                    
-                    <div class="tags">
-                        <span><i class="bi bi-code"></i> Web Developer</span>
-                        <span><i class="bi bi-controller"></i> Game Developer</span>
-                        <span><i class="bi bi-lightbulb"></i> Vole ideeën</span>
-                    </div>
-                    
-                    <p>
-                        Ik maak websites en games met code. Mijn doel is om een unieke game te maken 
-                        die mensen leuk vinden. Ik leer elke dag nieuwe dingen over programmeren.
-                    </p>
-                    
-                    <div class="buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            <i class="bi bi-folder"></i> Bekijk Projecten
-                        </a>
-                        <a href="#" class="btn btn-secondary">
-                            <i class="bi bi-download"></i> Download CV
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="home-image">
-                    <img src="img/image-copy-2.png" alt="Foto van Najib Ali">
-                </div>
-            </div>
+  <nav class="rail" id="rail" aria-label="Sections">
+    <a href="#top" aria-label="Home" aria-current="true"><span class="rail__label" aria-hidden="true">Home</span><span class="rail__dot"></span></a>
+    <a href="#about" aria-label="About"><span class="rail__label" aria-hidden="true">About</span><span class="rail__dot"></span></a>
+    <a href="#work" aria-label="Work"><span class="rail__label" aria-hidden="true">Work</span><span class="rail__dot"></span></a>
+    <a href="#skills" aria-label="Skills"><span class="rail__label" aria-hidden="true">Skills</span><span class="rail__dot"></span></a>
+    <a href="#contact" aria-label="Contact"><span class="rail__label" aria-hidden="true">Contact</span><span class="rail__dot"></span></a>
+  </nav>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-name" data-section="top">
+      <div class="hero__intro" data-hero-item>
+        <div class="portrait" data-hero-item>
+          <img class="portrait__image" src="assets/portrait.jpg" alt="Portrait of Najib Ali" width="184" height="230">
         </div>
-    </section>
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About me</h2>
-        <div class="container">
-            <div class="d-flex about-row">
-                <img src="img/image-copy-2.png" alt="Foto van mij" class="about-img me-4" loading="lazy">
-                <p class="about-text">
-                    I am Najib Ali, an enthusiastic Software & Developer student. I am always looking for new challenges
-                    and opportunities to improve my skills. My passion for technology and programming drives me to
-                    create innovative solutions. My goal is to create a unique game that will amaze the world in the
-                    future. I am always willing to learn and collaborate with others to achieve great things.
-                </p>
-            </div>
-        </div>
+        <p class="hero__line" data-hero-item>Software development student building websites and games with code.</p>
+      </div>
+      <h1 class="hero__name display" id="hero-name"><span class="hero__tilt" id="hero-tilt">Najib<br>Ali</span></h1>
+      <a class="badge" href="#about" data-cursor="Scroll" aria-label="Scroll to the About section" data-hero-item>
+        <svg class="badge__ring" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="badge-circle" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+          <text><textPath href="#badge-circle" textLength="486">scroll to explore ✦ najib ali ✦ portfolio ✦</textPath></text>
+        </svg>
+        <span class="badge__button"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-down"/></svg></span>
+      </a>
     </section>
 
-    <!-- Skills Section with icons and progress bars -->
-    <section id="skills" class="mb-5">
-        <h2 class="section-title">Skills</h2>
-
-        <!-- HTML5 Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">HTML5</p>
-                <div class="progress" style="height: 20px">
-                    <div id="html5" class="progress-bar bg-danger" role="progressbar" style="width: 80%"
-                        aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
-                        80%
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CSS3 Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">CSS3</p>
-                <div class="progress" style="height: 20px">
-                    <div id="css3" class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="64"
-                        aria-valuemin="0" aria-valuemax="100">
-                        75%
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- JavaScript Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript" class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">JavaScript</p>
-                <div class="progress" style="height: 20px">
-                    <div id="javascript" class="progress-bar bg-warning text-dark" role="progressbar" style="width: 49%"
-                        aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">
-                        49%
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bootstrap Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">Bootstrap</p>
-                <div class="progress" style="height: 20px">
-                    <div id="bootstrap" class="progress-bar bg-dark-subtle" role="progressbar" style="width: 80%"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-                        80%
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PHP Skill -->
-        <div class="skill-item">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"
-                class="skill-icon">
-            <div class="skill-bar-container">
-                <p class="form-label fw-semibold mb-1">PHP</p>
-                <div class="progress" style="height: 20px">
-                    <div id="php" class="progress-bar bg-primary-subtle" role="progressbar" style="width: 65%"
-                        aria-valuenow="43" aria-valuemin="0" aria-valuemax="100">
-                        65%
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Next.js</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar" role="progressbar" style="width: 45%; background:#000;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Symfony</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Linux</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="skill-item d-flex align-items-center mb-3">
-            <div class="skill-icon me-3" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M2 12C6 6 10 6 14 4.5C18 3 22 4 22 4" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 18C6 12 10 12 14 10.5C18 9 22 10 22 10" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">Tailwind CSS</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar" role="progressbar" style="width: 80%; background:#06b6d4;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="skill-item d-flex align-items-center mb-3">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" class="skill-icon me-3" width="48" height="48">
-            <div class="skill-bar-container flex-grow-1">
-                <p class="form-label fw-semibold mb-1">SQL</p>
-                <div class="progress" style="height: 20px">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">68%</div>
-                </div>
-            </div>
-        </div>
+    <section class="about" id="about" aria-labelledby="about-label" data-section="about">
+      <p class="label" id="about-label" data-reveal="up">About me</p>
+      <p class="about__statement statement" id="statement">I'm Najib. I enjoy solving problems with code, and my dream is to build a game that <em class="iris" data-iris>lots of people</em> play. I learn something new about programming every day.</p>
+      <ul class="facts">
+        <li class="fact" data-reveal="up"><span class="fact__label">Studying</span><span class="fact__value">Software development</span></li>
+        <li class="fact" data-reveal="up"><span class="fact__label">Building</span><span class="fact__value">Websites and games</span></li>
+        <li class="fact" data-reveal="up"><span class="fact__label">Working toward</span><span class="fact__value">A game lots of people play</span></li>
+      </ul>
     </section>
 
-    <!-- Projecten Sectie -->
-    <section id="projects" class="bg-light py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Mijn Projecten</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card shadow-lg">
-                        <img src="img/tic-tac-toe1.png" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Tic Tac Toe</h5>
-                            <p class="card-text">
-                                A game where two players take turns placing a symbol on a 3x3 grid,
-                                aiming to get three in a row.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="tic-tac-toe.html" class="btn btn-primary mt-auto" target="_blank"
-                                    rel="noopener">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-lg">
-                        <img src="img/happy-mole-with-shovel-white-background_990095-7168.avif" class="card-img-top"
-                            alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Whack a Mole</h5>
-                            <p class="card-text">
-                                A reaction game where moles pop up from holes, and players must hit
-                                them as quickly as possible.
-                            </p>
-                            <div class="d-flex justify-content-center">
-                                <a href="whack.html" class="btn btn-primary mt-auto" target="_blank" rel="noopener">View
-                                    Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-lg">
-                        <img src="img/conect.jpg" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Connect Four</h5>
-                            <p class="card-text">
-                                Two players take turns dropping discs into a vertical grid, aiming to
-                                connect four in a row.
-                            </p>
-                            <div class="d-flex justify-content-center">
-                                <a href="4-op-rij.html" class="btn btn-primary mt-auto" target="_blank"
-                                    rel="noopener">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card shadow-lg">
-                        <img src="img/hoger.png" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">High & Low</h5>
-                            <p class="card-text">
-                                A game where players must guess whether the next number will be higher
-                                or lower than the current number. Correct guesses earn points.
-                            </p>
-                            <div class="d-flex justify-content-center">
-                                <a href="Hoger&Lager.html" class="btn btn-primary mt-auto" target="_blank"
-                                    rel="noopener">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <div class="card shadow-lg h-100">
-                        <img src="img/image-copy.png" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Come Soon</h5>
-                            <p class="card-text">project still working on it coming soon</p>
-
-                        </div>
-                        <div class="d-flex justify-content-center mb-3">
-                            <a href="#" class="btn btn-danger mt-auto" target="_blank" rel="noopener">View Project</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="work" id="work" aria-labelledby="work-title" data-section="work">
+      <div class="work__pin" id="work-pin">
+        <header class="work__head">
+          <h2 class="h-section" id="work-title" data-reveal="letters">Selected work</h2>
+          <p class="work__counter" aria-hidden="true"><span id="work-current">01</span> / <span id="work-total">06</span></p>
+        </header>
+        <div class="work__viewport">
+          <ul class="work__track" id="work-track"></ul>
         </div>
+        <div class="work__progress" aria-hidden="true"><span id="work-progress"></span></div>
+      </div>
+      <noscript>
+        <ul class="work__fallback">
+          <li><a href="projects/tic-tac-toe.html">Tic Tac Toe</a></li>
+          <li><a href="projects/whack-a-mole.html">Whack-a-Mole</a></li>
+          <li><a href="projects/connect-four.html">Connect Four</a></li>
+          <li><a href="projects/higher-or-lower.html">Higher or Lower</a></li>
+        </ul>
+      </noscript>
     </section>
 
-    <!-- Contact Sectie -->
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Contact</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </form>
+    <section class="skills" id="skills" aria-labelledby="skills-title" data-section="skills">
+      <div class="skills__copy">
+        <p class="label" data-reveal="up">What I work with</p>
+        <h2 class="h-section" id="skills-title" data-reveal="letters">Skills in orbit</h2>
+        <p class="skills__intro" data-reveal="up">The closer a skill is to the center, the more experience I have with it.</p>
+        <ul class="legend" data-reveal="up">
+          <li><span class="legend__ring legend__ring--0" aria-hidden="true"></span>Inner ring: advanced</li>
+          <li><span class="legend__ring legend__ring--1" aria-hidden="true"></span>Middle ring: intermediate</li>
+          <li><span class="legend__ring legend__ring--2" aria-hidden="true"></span>Outer ring: learning</li>
+        </ul>
+        <div class="detail" id="skill-detail" aria-live="polite">
+          <p class="detail__level" id="detail-level">Hover a skill</p>
+          <p class="detail__name" id="detail-name">Ten technologies</p>
+          <p class="detail__text" id="detail-text">From semantic HTML to Next.js and Linux.</p>
         </div>
+      </div>
+      <div class="orbit" id="orbit"></div>
+      <ul class="sr-only" id="skills-list"></ul>
     </section>
 
+    <section class="contact" id="contact" aria-labelledby="contact-title" data-section="contact">
+      <p class="label label--center" data-reveal="up">Contact</p>
+      <h2 class="contact__title display" id="contact-title" data-reveal="letters">Let's create <em class="iris" data-iris>something beautiful.</em></h2>
+      <button class="capsule" type="button" id="capsule" data-cursor="Copy" data-email="najiib123098@hotmail.com" aria-label="Copy email address najiib123098@hotmail.com">
+        <span class="capsule__flood" aria-hidden="true"></span>
+        <span class="capsule__address" id="capsule-address" aria-hidden="true">najiib123098@hotmail.com</span>
+        <span class="capsule__done" aria-hidden="true">Copied to your clipboard</span>
+      </button>
+      <p class="sr-only" id="capsule-status" role="status" aria-live="polite"></p>
+      <a class="mail-link link" href="mailto:najiib123098@hotmail.com" data-cursor="Email">or open it in your email app
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right"/></svg>
+      </a>
+      <ul class="orbs">
+        <li>
+          <a class="orb" href="https://www.linkedin.com/in/najib-ali-7b20a7367/" target="_blank" rel="noopener noreferrer" data-cursor="Open">
+            <span class="orb__circle"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"/></svg></span>
+            <span class="orb__name">LinkedIn<span class="sr-only"> (opens in a new tab)</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="orb" href="https://github.com/NajibAli" target="_blank" rel="noopener noreferrer" data-cursor="Open">
+            <span class="orb__circle"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"/></svg></span>
+            <span class="orb__name">GitHub<span class="sr-only"> (opens in a new tab)</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="orb" href="https://flowcv.com/resume/lsrcvid63oqs?classId=dd96a71e-1520-4ea3-bd5f-902b7d104d84&amp;assignmentId=5f2367d4-dfc3-45ea-a12e-cec0f599c2c7&amp;submissionId=981ad1b1-bf03-32b6-fa21-97064698f9bb" target="_blank" rel="noopener noreferrer" data-cursor="Open">
+            <span class="orb__circle"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#document"/></svg></span>
+            <span class="orb__name">CV<span class="sr-only"> (opens in a new tab)</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="orb" href="tel:+31641666555" data-cursor="Open">
+            <span class="orb__circle"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"/></svg></span>
+            <span class="orb__name">Phone<span class="sr-only">: +31 6 4166 6555</span></span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <p class="wordmark" id="wordmark" aria-hidden="true"><span class="wordmark__outline">Najib Ali</span><span class="wordmark__fill">Najib Ali</span></p>
+    <div class="site-footer__bar">
+      <p>© <span id="year">2026</span> Najib Ali</p>
+      <p><a class="link" href="https://github.com/NajibAli/NajibAli.github.io" target="_blank" rel="noopener noreferrer">Built from scratch with HTML, CSS, JavaScript and WebGL<span class="sr-only"> (opens in a new tab)</span></a></p>
+      <a class="link" href="#top" data-cursor="Scroll">Back to top <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up"/></svg></a>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>Portfolio van Najib Ali &copy;</p>
-        <div class="container">
-            <nav class="social-icons" aria-label="Social media links">
-                <!-- GitHub link -->
-                <a href="https://github.com/NajibAli/NajibAli.github.io" target="_blank" rel="noopener"
-                    aria-label="GitHub">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                        class="bi bi-github" viewBox="0 0 16 16">
-                        <path
-                            d="M8 0C3.58 0 0 3.58 0 8a8.01 8.01 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.49-2.7-1.07-2.7-1.07-.36-.91-.89-1.15-.89-1.15-.73-.5.06-.49.06-.49.81.06 1.24.84 1.24.84.72 1.23 1.87.88 2.33.67.07-.52.28-.88.5-1.08-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.72 7.72 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                    </svg>
-                </a>
-                <!-- LinkedIn link -->
-                <a href="https://www.linkedin.com/in/najib-ali-7b20a7367/" target="_blank" rel="noopener"
-                    aria-label="LinkedIn">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                        class="bi bi-linkedin" viewBox="0 0 16 16">
-                        <title>LinkedIn</title>
-                        <path
-                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.473 0 16 .513 16 1.146v13.708c0 .633-.527 1.146-1.175 1.146H1.175C.527 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c-.837 0-1.356-.555-1.356-1.248 0-.707.535-1.248 1.388-1.248.853 0 1.356.541 1.372 1.248 0 .693-.52 1.248-1.404 1.248h-.001zm4.908 8.212h2.4v-4.168c0-.223.016-.447.082-.606.18-.447.591-.911 1.281-.911.903 0 1.266.688 1.266 1.697v3.988h2.4V9.98c0-2.22-1.182-3.252-2.763-3.252-1.28 0-1.845.7-2.165 1.193v.025h-.016a5.01 5.01 0 0 1 .016-.025V6.169h-2.4c.03.716 0 7.225 0 7.225z" />
-                    </svg>
-                </a>
-            </nav>
-        </div>
-    </footer>
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+    <h2 id="project-dialog-title"></h2>
+    <p class="project-dialog__stack" id="project-dialog-stack"></p>
+    <p id="project-dialog-text"></p>
+    <p>The code is in a private school repository.</p>
+    <div class="dialog-actions">
+      <a class="btn btn--solid" id="project-dialog-mail" href="mailto:najiib123098@hotmail.com">Ask me about it</a>
+      <button class="btn" type="button" id="project-dialog-close">Close</button>
+    </div>
+  </dialog>
 
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="grain" aria-hidden="true"></div>
 </body>
-
 </html>

@@ -72,6 +72,47 @@ export function splitLetters(element) {
 }
 
 /**
+ * Wrap every word of an element in a `.focus-word` span. Inline elements
+ * inside the text (such as an italic phrase) are preserved, and the text
+ * stays readable for assistive technology.
+ * @param {HTMLElement} element
+ * @returns {HTMLElement[]} The word elements, in reading order
+ */
+export function splitWords(element) {
+  /** @type {HTMLElement[]} */
+  const words = [];
+
+  /** @param {Node} node */
+  const split = (node) => {
+    for (const child of [...node.childNodes]) {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        split(child);
+        continue;
+      }
+      if (child.nodeType !== Node.TEXT_NODE) continue;
+
+      const fragment = document.createDocumentFragment();
+      for (const part of (child.textContent ?? '').split(/(\s+)/)) {
+        if (part === '') continue;
+        if (/^\s+$/.test(part)) {
+          fragment.append(' ');
+          continue;
+        }
+        const word = document.createElement('span');
+        word.className = 'focus-word';
+        word.textContent = part;
+        words.push(word);
+        fragment.append(word);
+      }
+      child.replaceWith(fragment);
+    }
+  };
+
+  split(element);
+  return words;
+}
+
+/**
  * Give every letter of a gradient phrase its slice of one continuous gradient.
  * (`background-clip: text` does not work on a parent whose children are transformed.)
  * @param {HTMLElement} phrase Element wrapping letters made by {@link splitLetters}
