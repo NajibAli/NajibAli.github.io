@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect Four | Najib Ali</title>
+  <meta name="description" content="Connect Four for two players, built with HTML, CSS and JavaScript by Najib Ali. Drop discs into the grid and be the first to connect four in a row.">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Connect Four | Najib Ali">
+  <meta property="og:description" content="Drop discs into the grid and be the first to connect four in a row.">
+  <meta property="og:url" content="https://najibali.github.io/projects/connect-four.html">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      try {
+        theme = localStorage.getItem('theme');
+        if (sessionStorage.getItem('curtain') === '1') root.classList.add('is-covered');
+      } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/projects/connect-four.css">
+  <script type="module" src="../js/projects/connect-four.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="project-header">
+    <a class="back-link" href="../index.html#work" data-transition-title="Work">
+      <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-left"/></svg>
+      All work
+    </a>
+    <div class="project-header__end">
+      <span>Najib Ali</span>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="../assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="../assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero__orb" aria-hidden="true"></div>
+      <h1 class="project-title h-section" id="project-title" data-reveal="letters">Connect Four</h1>
+      <p class="project-description">Drop discs into the grid and be the first to connect four in a row.</p>
+      <p class="project-meta">
+        <span class="tag">Game for two</span>
+        <span class="stack">HTML, CSS, JavaScript</span>
+      </p>
+    </section>
+
+    <section class="project-stage" aria-label="Game">
+      <div class="board-frame frame">
+        <div class="c4" id="board">
+          <div class="c4__ghost" id="ghost" aria-hidden="true"></div>
+          <div class="c4__discs" id="discs" aria-hidden="true"></div>
+          <svg class="c4__plate" viewBox="0 0 700 700" aria-hidden="true">
+            <path id="plate" fill-rule="evenodd"/>
+          </svg>
+          <div class="c4__columns" id="columns" role="group" aria-label="Connect Four board, 7 columns"></div>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Game controls">
+        <p class="status" id="status" role="status" aria-live="polite">Player 1's turn</p>
+        <dl class="scores">
+          <div class="score"><dt class="score__label">Player 1</dt><dd class="score__value" id="score-1">0</dd></div>
+          <div class="score"><dt class="score__label">Draws</dt><dd class="score__value" id="score-draws">0</dd></div>
+          <div class="score"><dt class="score__label">Player 2</dt><dd class="score__value" id="score-2">0</dd></div>
+        </dl>
+        <ul class="c4-legend">
+          <li><span class="c4-chip c4-chip--1" aria-hidden="true"></span>Player 1: peach disc with a ring</li>
+          <li><span class="c4-chip c4-chip--2" aria-hidden="true"></span>Player 2: solid aqua disc</li>
+        </ul>
+        <div class="panel-actions">
+          <button class="btn btn--solid" type="button" id="new-game" data-cursor="Play">New game</button>
+          <button class="icon-btn sound-toggle" type="button" id="sound" aria-pressed="true" aria-label="Sound on. Switch sound off">
+            <svg class="icon icon--on" aria-hidden="true"><use href="../assets/icons.svg#volume"/></svg>
+            <svg class="icon icon--off" aria-hidden="true"><use href="../assets/icons.svg#volume-off"/></svg>
+          </button>
+        </div>
+        <details class="howto">
+          <summary>How to play</summary>
+          <div class="howto__body">
+            <p>Two players share this device. Take turns dropping a disc into one of the seven columns. It falls to the lowest free space. The first to line up four discs in a row, across, down or diagonally, wins.</p>
+            <p>Keyboard: use the arrow keys to choose a column and Enter to drop, or press 1 to 7.</p>
+          </div>
+        </details>
+      </aside>
+    </section>
+
+    <a class="next-project" href="higher-or-lower.html" data-transition-title="Higher or Lower">
+      <span class="next-project__label">Next project
+        <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-up-right"/></svg>
+      </span>
+      <span class="next-project__title" data-text="Higher or Lower">Higher or Lower</span>
+    </a>
+  </main>
+
+  <noscript><p>This project needs JavaScript to run.</p></noscript>
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>

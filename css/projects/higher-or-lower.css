@@ -1,0 +1,313 @@
+/* Higher or Lower: pearl dice with void pips, credits as dots, the streak as five segments. */
+
+.hol {
+  --die: clamp(64px, 14vw, 104px);
+  display: grid;
+  gap: clamp(20px, 4vw, 36px);
+  width: min(100%, 560px);
+  color: var(--pearl);
+  justify-items: center;
+}
+
+/* ---------- Dice ---------- */
+
+.hol__dice {
+  display: grid;
+  grid-template-columns: var(--die) minmax(0, 1fr) var(--die);
+  align-items: center;
+  gap: clamp(12px, 3vw, 28px);
+  width: 100%;
+}
+
+.die {
+  position: relative;
+  width: var(--die);
+  height: var(--die);
+  perspective: 520px;
+}
+
+.die__cube {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(-16deg) rotateY(20deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 1s var(--ease-out);
+}
+
+.die__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  padding: 14%;
+  border-radius: 18%;
+  background: linear-gradient(145deg, #f6f3fc, #d9d4e8);
+  backface-visibility: hidden;
+}
+
+.die__face[data-value="1"] { transform: translateZ(calc(var(--die) / 2)); }
+.die__face[data-value="6"] { transform: rotateY(180deg) translateZ(calc(var(--die) / 2)); }
+.die__face[data-value="2"] { transform: rotateY(90deg) translateZ(calc(var(--die) / 2)); }
+.die__face[data-value="5"] { transform: rotateY(-90deg) translateZ(calc(var(--die) / 2)); }
+.die__face[data-value="3"] { transform: rotateX(90deg) translateZ(calc(var(--die) / 2)); }
+.die__face[data-value="4"] { transform: rotateX(-90deg) translateZ(calc(var(--die) / 2)); }
+
+.die__pip {
+  place-self: center;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--void);
+}
+
+.hol__total {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.hol__total-value {
+  font-size: clamp(3.4rem, 11vw, 6.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hol__previous {
+  font-size: 0.9rem;
+  color: rgb(238 234 246 / 0.6);
+  min-height: 1.5em;
+}
+
+/* Check or cross badge with the points, shown after each guess */
+.hol__badge {
+  position: absolute;
+  top: -14px;
+  right: -8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--void);
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.hol__badge.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hol__badge[data-result="correct"] {
+  background: var(--aqua);
+}
+
+.hol__badge[data-result="wrong"] {
+  background: var(--peach);
+}
+
+/* ---------- Actions ---------- */
+
+.hol__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.hol__action {
+  min-width: 140px;
+  min-height: 56px;
+  font-size: 1.1rem;
+}
+
+.hol .btn {
+  border-color: rgb(238 234 246 / 0.4);
+  color: var(--pearl);
+}
+
+.hol .btn--solid {
+  background: var(--pearl);
+  color: var(--void);
+  border-color: var(--pearl);
+}
+
+.hol .btn:hover:not(.btn--solid) {
+  background: rgb(238 234 246 / 0.12);
+}
+
+/* ---------- Meters ---------- */
+
+.hol__meters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px 32px;
+  width: 100%;
+  padding-top: 20px;
+  border-top: 1px solid rgb(238 234 246 / 0.12);
+}
+
+.hol__meter {
+  display: grid;
+  gap: 8px;
+}
+
+.hol .small {
+  color: rgb(238 234 246 / 0.6);
+}
+
+.hol__dots,
+.hol__segments {
+  display: flex;
+  gap: 6px;
+}
+
+.hol__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pearl);
+  transition: background-color 0.5s var(--ease-out), scale 0.5s var(--ease-out);
+}
+
+.hol__dot.is-spent {
+  background: rgb(238 234 246 / 0.16);
+  scale: 0.7;
+}
+
+.hol__segment {
+  width: 26px;
+  height: 6px;
+  border-radius: 6px;
+  background: rgb(238 234 246 / 0.16);
+  transition: background-color 0.5s var(--ease-out);
+}
+
+.hol__segment.is-filled {
+  background: var(--aqua);
+}
+
+/* ---------- Bonus spin ---------- */
+
+.hol__bonus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.hol__reel {
+  width: 112px;
+  height: 56px;
+  overflow: hidden;
+  border: 1px solid rgb(238 234 246 / 0.2);
+  border-radius: 14px;
+  mask-image: linear-gradient(transparent, #000 30%, #000 70%, transparent);
+}
+
+.hol__reel-track {
+  display: grid;
+  transition: transform 2.4s cubic-bezier(0.12, 0.7, 0.1, 1);
+}
+
+.hol__reel-item {
+  display: grid;
+  place-items: center;
+  height: 56px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-stretch: 115%;
+  font-variant-numeric: tabular-nums;
+}
+
+.hol__spin.is-ready {
+  background: var(--iris);
+  color: var(--void);
+  border-color: transparent;
+}
+
+/* ---------- Leaderboard ---------- */
+
+.leaderboard {
+  display: grid;
+  gap: 10px;
+}
+
+.leaderboard__title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.leaderboard__list {
+  display: grid;
+  gap: 6px;
+  counter-reset: place;
+}
+
+.leaderboard__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+  counter-increment: place;
+}
+
+.leaderboard__list li::before {
+  content: counter(place);
+  width: 1.6em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderboard__name {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.leaderboard__points {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* ---------- Dialog form ---------- */
+
+#game-over-dialog .final-score {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-stretch: 115%;
+}
+
+.field {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: rgb(238 234 246 / 0.7);
+}
+
+.field__input {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 6px;
+  padding: 0 16px;
+  border: 1px solid rgb(238 234 246 / 0.3);
+  border-radius: 14px;
+  background: rgb(238 234 246 / 0.06);
+  color: var(--pearl);
+  font: inherit;
+}
+
+.field__input:focus-visible {
+  outline-offset: 2px;
+  border-radius: 14px;
+}

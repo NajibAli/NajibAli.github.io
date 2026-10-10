@@ -1,0 +1,181 @@
+/* Whack-a-Mole: a fixed 3×3 grid at every screen size so the 1 to 9 keys always match. */
+
+.whack {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 2.5vw, 20px);
+  width: min(100%, 520px);
+}
+
+/* Peach flash when a bomb goes off */
+.whack::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 24px;
+  background: radial-gradient(closest-side, rgb(255 179 138 / 0.7), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.whack.is-flash::after {
+  animation: whack-flash 0.5s var(--ease-out);
+}
+
+.hole {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 18px;
+  color: var(--pearl);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hole__key {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: rgb(238 234 246 / 0.35);
+}
+
+.hole__pit {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 10%;
+  height: 34%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 25%, #03040a, #0b0c18 70%);
+  border: 1px solid rgb(238 234 246 / 0.16);
+  box-shadow: inset 0 8px 16px rgb(0 0 0 / 0.65);
+}
+
+/* Clips the character at the pit's centre line so it rises from behind the rim */
+.hole__stage {
+  position: absolute;
+  inset: 0 0 27% 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hole__critter {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  aspect-ratio: 1;
+  transform: translateY(110%);
+  transition: transform 0.16s cubic-bezier(0.3, 0, 0.6, 1);
+}
+
+.hole__critter svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hole.is-up .hole__critter {
+  transform: none;
+  transition-timing-function: var(--ease-out);
+  transition-duration: 0.22s;
+}
+
+.hole.is-hit .hole__critter {
+  animation: whack-hit 0.28s var(--ease-out);
+}
+
+.hole__points {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  translate: -50% 0;
+  font-weight: 700;
+  font-stretch: 115%;
+  color: var(--peach);
+  pointer-events: none;
+  animation: whack-points 0.7s var(--ease-out) forwards;
+}
+
+.hole:focus-visible {
+  outline-offset: 0;
+  border-radius: 18px;
+}
+
+.whack-clock {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.whack-clock__bar {
+  height: 100%;
+  background: var(--iris);
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.whack-legend {
+  display: grid;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.whack-legend li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.whack-legend__icon {
+  width: 34px;
+  height: 34px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--void-2);
+  overflow: visible;
+}
+
+#result-dialog .result-score {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-stretch: 115%;
+  color: var(--pearl);
+}
+
+#result-dialog .result-record {
+  color: var(--peach);
+  font-weight: 600;
+}
+
+@keyframes whack-hit {
+  40% {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes whack-points {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-48px);
+  }
+}
+
+@keyframes whack-flash {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
