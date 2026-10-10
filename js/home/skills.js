@@ -7,11 +7,12 @@ import { getScrollVelocity, prefersReducedMotion } from '../motion.js';
 /** @typedef {import('../data.js').Skill} Skill */
 
 /** Ring radius as a fraction of the outer ring, innermost first. */
-const RING_RATIOS = [0.5, 0.74, 1];
+const RING_RATIOS = [0.46, 0.73, 1];
 /** Degrees per second; positive is clockwise. The middle ring runs the other way. */
 const RING_SPEEDS = [7, -5, 3.2];
 const RING_LIGHT_SECONDS = [16, 22, 30];
 const PILL_GAP_PX = 14;
+const RING_SPACING_PX = 44;
 const SCROLL_NUDGE = 0.06;
 
 /**
@@ -87,6 +88,24 @@ export function initSkills({ skills, onPulse }) {
     }
     outerRadius = Math.max(40, size / 2 - widest / 2 - 6);
     radii = RING_RATIOS.map((ratio) => outerRadius * ratio);
+
+    // Rings grow if their pills would not otherwise fit without overlapping.
+    RING_RATIOS.forEach((_ratio, ringIndex) => {
+      const needed = pills
+        .filter((pill) => pill.ring === ringIndex)
+        .reduce((sum, pill) => sum + pill.width + PILL_GAP_PX, 0);
+      const previous = ringIndex === 0 ? 0 : radii[ringIndex - 1] + RING_SPACING_PX;
+      radii[ringIndex] = Math.max(radii[ringIndex], needed / (2 * Math.PI), previous);
+    });
+
+    // On very narrow screens shrink the whole orbit, pills included, so nothing leaves the page.
+    const extent = radii[radii.length - 1] + widest / 2 + 2;
+    const fit = Math.min(1, size / 2 / extent);
+    radii = radii.map((radius) => radius * fit);
+    for (const pill of pills) {
+      pill.width *= fit;
+      pill.element.style.setProperty('--fit', String(fit));
+    }
 
     rings.forEach((ring, index) => {
       const diameter = radii[index] * 2;

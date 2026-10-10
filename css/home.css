@@ -460,6 +460,10 @@ html.is-loading {
 }
 
 @media (max-width: 799px) {
+  .hero__name {
+    font-size: clamp(4.5rem, 24vw, 9rem);
+  }
+
   .badge {
     right: var(--pad);
     bottom: clamp(24px, 5vh, 48px);
@@ -554,6 +558,7 @@ html.is-loading {
 }
 
 .work__counter {
+  display: none;
   font-size: clamp(1rem, 1.6vw, 1.4rem);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -777,7 +782,11 @@ html.is-loading {
 
   .work-card {
     flex: none;
-    width: min(66vw, calc((100svh - 340px) * 1.6));
+    width: min(66vw, calc((100svh - 410px) * 1.6));
+  }
+
+  .work__counter {
+    display: block;
   }
 
   .work__progress {
@@ -958,8 +967,10 @@ html.is-loading {
   font-size: clamp(0.78rem, 1.1vw, 0.95rem);
   font-weight: 500;
   white-space: nowrap;
+  scale: var(--fit, 1);
   will-change: transform;
-  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out),
+    scale 0.4s var(--ease-out);
 }
 
 [data-theme="light"] .pill {
@@ -968,10 +979,24 @@ html.is-loading {
 
 .pill:hover,
 .pill:focus-visible {
-  scale: 1.14;
+  scale: calc(var(--fit, 1) * 1.14);
   background: var(--fg);
   color: var(--bg);
   box-shadow: 0 0 30px rgb(139 92 255 / 0.5), 0 0 60px rgb(61 232 224 / 0.3);
+}
+
+@media (max-width: 899px) {
+  /* Full-bleed square so the rings have room on phones */
+  .orbit {
+    --size: min(100vw, 78vh);
+    margin-inline: calc(50% - var(--size) / 2);
+  }
+
+  .pill {
+    min-height: 36px;
+    padding: 0 11px;
+    font-size: 0.72rem;
+  }
 }
 
 /* ---------- Contact ---------- */

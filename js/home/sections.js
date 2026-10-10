@@ -24,7 +24,7 @@ function targetFor(id, orbit, innerRingDiameter) {
         ? { x: 0.5, y: 0.8, size: 0.62, hue: 0.1 }
         : { x: 0.77, y: 0.5, size: 0.52, hue: 0.1 };
     case 'work':
-      return { x: 0.5, y: 1.55, size: 0.7, hue: 0.24, visible: 0 };
+      return { x: 0.5, y: 2.1, size: 0.7, hue: 0.24, visible: 0 };
     case 'skills': {
       if (!orbit) return { x: 0.5, y: 0.5, size: 0.3, hue: 0.88 };
       const rect = orbit.getBoundingClientRect();
@@ -32,8 +32,8 @@ function targetFor(id, orbit, innerRingDiameter) {
       return {
         x: (rect.left + rect.width / 2) / window.innerWidth,
         y: (rect.top + rect.height / 2) / window.innerHeight,
-        // The shape renders about 1.3 times its nominal size; keep it inside the pills.
-        size: Math.max(0.06, (innerRingDiameter() - 84) / 1.3 / shorter),
+        // The shape renders about 1.65 times its nominal size; keep it inside the pills.
+        size: Math.max(0.05, (innerRingDiameter() - 100) / 1.65 / shorter),
         hue: 0.88,
       };
     }
