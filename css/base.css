@@ -1,0 +1,759 @@
+/* Base: tokens, fonts, reset, type, shared components, cursor, grain, transitions */
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("../assets/fonts/mona-sans-latin-wdth-normal.woff2") format("woff2");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("../assets/fonts/mona-sans-latin-wdth-italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Metric-adjusted fallback so the swap to Mona Sans barely moves the layout */
+@font-face {
+  font-family: "Mona Sans Fallback";
+  src: local("Arial");
+  size-adjust: 104%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --void: #090a14;
+  --void-2: #11121f;
+  --pearl: #eeeaf6;
+  --haze: #9a98b0;
+  --violet: #8b5cff;
+  --aqua: #3de8e0;
+  --peach: #ffb38a;
+  --iris: linear-gradient(100deg, var(--violet), var(--aqua) 50%, var(--peach));
+  --line: rgb(238 234 246 / 0.12);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+  --pad: clamp(18px, 4vw, 56px);
+  --radius-frame: 22px;
+  --font: "Mona Sans", "Mona Sans Fallback", system-ui, sans-serif;
+}
+
+/* Components only use these semantic tokens, never the raw colours above */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: var(--void);
+  --fg: var(--pearl);
+  --muted: var(--haze);
+  --frame: var(--void-2);
+  --glass: rgb(17 18 31 / 0.55);
+  --focus: var(--aqua);
+  --iris-text: var(--iris);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f1f8;
+  --fg: #14152b;
+  --muted: #5b5a72;
+  --frame: #11121f;
+  --glass: rgb(255 255 255 / 0.55);
+  --line: rgb(20 21 43 / 0.12);
+  --focus: #0a7a82;
+  /* Slightly deeper spectrum so gradient text stays legible on the pale background */
+  --iris-text: linear-gradient(100deg, #6a3dff, #0aa6a0 50%, #d9642c);
+}
+
+/* ---------- Reset ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+::selection {
+  background: var(--violet);
+  color: var(--pearl);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 500;
+  transform: translateY(-200%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Type ---------- */
+
+.display {
+  margin: 0;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+}
+
+.h-section {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  font-stretch: 120%;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.statement {
+  font-size: clamp(2rem, 5.4vw, 5.6rem);
+  font-weight: 600;
+  font-stretch: 112%;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.h-project {
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-weight: 650;
+  font-stretch: 118%;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.small {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Small label with a spectrum hairline in front */
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.label::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background: var(--iris);
+}
+
+/* The word/letter spans made by reveal.js */
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letter {
+  display: inline-block;
+}
+
+/* Gradient text: a single phrase per section at most, large sizes only */
+.iris {
+  font-style: italic;
+  background: var(--iris-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  padding-inline-end: 0.08em;
+}
+
+/* After splitting, every letter carries its own slice of the gradient */
+.iris .letter,
+.iris .focus-word {
+  background-image: var(--iris-text);
+  background-size: var(--iris-w, 100%) 100%;
+  background-position: var(--iris-x, 0) 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.iris:has(.letter, .focus-word) {
+  background: none;
+}
+
+/* ---------- Reveal states (set by js/reveal.js) ---------- */
+
+.motion [data-reveal="letters"]:not([data-reveal-state]),
+.motion [data-reveal="up"]:not([data-reveal-state]) {
+  opacity: 0;
+  /* If the script never runs, show the content after a moment anyway */
+  animation: reveal-failsafe 0.01s 4s forwards;
+}
+
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Buttons and links ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px;
+  border: 1px solid color-mix(in srgb, var(--fg) 40%, transparent);
+  border-radius: 999px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+    scale 0.4s var(--ease-out);
+}
+
+.btn:hover {
+  border-color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+}
+
+.btn--solid {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn--solid:hover {
+  background: var(--fg);
+  scale: 1.03;
+}
+
+.btn:active {
+  scale: 0.97;
+}
+
+.btn[disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), scale 0.4s var(--ease-out);
+}
+
+.icon-btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+  scale: 1.08;
+}
+
+/* Underline that draws in on hover */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-block: 4px;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle .icon--moon,
+[data-theme="light"] .theme-toggle .icon--sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle .icon--moon {
+  display: block;
+}
+
+/* ---------- Spectrum-edged frame ---------- */
+
+.frame {
+  position: relative;
+  border-radius: var(--radius-frame);
+  background: var(--void-2);
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--iris);
+  opacity: var(--frame-border, 0.4);
+  transition: opacity 0.5s var(--ease-out);
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ---------- Film grain ---------- */
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 900;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(1) infinite;
+}
+
+[data-theme="light"] .grain {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  filter: invert(1);
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -4%); }
+  60% { transform: translate(-4%, -2%); }
+  80% { transform: translate(3%, 3%); }
+}
+
+/* ---------- Custom cursor ---------- */
+
+.cursor-dot,
+.cursor-ring,
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.cursor-dot,
+.cursor-ring {
+  mix-blend-mode: difference;
+}
+
+.cursor-dot::before,
+.cursor-ring::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cursor-dot::before {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: var(--pearl);
+}
+
+.cursor-ring::before {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid var(--pearl);
+  transition: width 0.5s var(--ease-out), height 0.5s var(--ease-out), margin 0.5s var(--ease-out),
+    background-color 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+
+.cursor-ring span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-out);
+  white-space: nowrap;
+}
+
+.cursor-ring.is-interactive::before {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+}
+
+.cursor-ring.is-label::before {
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
+  background: var(--pearl);
+}
+
+.cursor-ring.is-label span {
+  opacity: 1;
+}
+
+.cursor-ring.is-pressed::before {
+  scale: 0.85;
+}
+
+.cursor-glow {
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(139 92 255 / 0.5), rgb(61 232 224 / 0.22) 55%, transparent);
+  mix-blend-mode: screen;
+  z-index: 5;
+}
+
+.cursor-active .cursor-dot,
+.cursor-active .cursor-ring {
+  opacity: 1;
+}
+
+.cursor-active .cursor-glow {
+  opacity: 0.12;
+}
+
+.has-cursor,
+.has-cursor * {
+  cursor: none;
+}
+
+.cursor-native .cursor-dot,
+.cursor-native .cursor-ring {
+  opacity: 0;
+}
+
+.cursor-native,
+.cursor-native * {
+  cursor: auto;
+}
+
+.cursor-native input,
+.cursor-native textarea {
+  cursor: text;
+}
+
+/* ---------- Dialogs ---------- */
+
+dialog {
+  max-width: min(520px, calc(100vw - 36px));
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--void-2);
+  color: var(--pearl);
+  box-shadow: 0 40px 120px rgb(0 0 0 / 0.5);
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), overlay 0.5s allow-discrete,
+    display 0.5s allow-discrete;
+}
+
+dialog::backdrop {
+  background: rgb(9 10 20 / 0.7);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.5s var(--ease-out), overlay 0.5s allow-discrete, display 0.5s allow-discrete;
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+
+  dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+dialog:not([open]) {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+}
+
+dialog:not([open])::backdrop {
+  opacity: 0;
+}
+
+dialog h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 650;
+  font-stretch: 118%;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+dialog p {
+  margin-top: 12px;
+  color: color-mix(in srgb, var(--pearl) 78%, transparent);
+}
+
+dialog .dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* The dialog is always a dark surface, so its buttons use pearl, not the page foreground */
+dialog .btn {
+  border-color: rgb(238 234 246 / 0.4);
+}
+
+dialog .btn--solid {
+  background: var(--pearl);
+  color: var(--void);
+  border-color: var(--pearl);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* ---------- View transitions ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: var(--ease-out);
+}
+
+html:not(.theme-switching)::view-transition-old(root) {
+  animation: vt-out 0.4s var(--ease-out) both;
+}
+
+html:not(.theme-switching)::view-transition-new(root) {
+  animation: vt-in 0.6s var(--ease-out) both;
+}
+
+html.theme-switching::view-transition-old(root),
+html.theme-switching::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.theme-switching::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.theme-switching::view-transition-new(root) {
+  z-index: 2;
+}
+
+::view-transition-group(*.project-morph) {
+  animation-duration: 0.6s;
+  animation-timing-function: var(--ease-out);
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* ---------- Curtain (page transition fallback) ---------- */
+
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--pad);
+  background: var(--iris);
+  color: var(--void);
+  clip-path: inset(100% 0 0 0);
+  pointer-events: none;
+}
+
+.curtain__title {
+  font-size: clamp(3rem, 11vw, 11rem);
+}
+
+/* Set by the inline head script when a curtain navigation is under way */
+.is-covered body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--iris);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .grain {
+    animation: none;
+  }
+}

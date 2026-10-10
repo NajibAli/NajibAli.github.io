@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whack-a-Mole | Najib Ali</title>
+  <meta name="description" content="Whack-a-Mole, a reflex game built with HTML, CSS and JavaScript by Najib Ali. Hit the moles as they pop up, but avoid the bombs.">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Whack-a-Mole | Najib Ali">
+  <meta property="og:description" content="Hit the moles as they pop up, but avoid the bombs.">
+  <meta property="og:url" content="https://najibali.github.io/projects/whack-a-mole.html">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      try {
+        theme = localStorage.getItem('theme');
+        if (sessionStorage.getItem('curtain') === '1') root.classList.add('is-covered');
+      } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/projects/whack-a-mole.css">
+  <script type="module" src="../js/projects/whack-a-mole.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="project-header">
+    <a class="back-link" href="../index.html#work" data-transition-title="Work">
+      <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-left"/></svg>
+      All work
+    </a>
+    <div class="project-header__end">
+      <span>Najib Ali</span>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="../assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="../assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero__orb" aria-hidden="true"></div>
+      <h1 class="project-title h-section" id="project-title" data-reveal="letters">Whack-a-Mole</h1>
+      <p class="project-description">Hit the moles as they pop up, but avoid the bombs.</p>
+      <p class="project-meta">
+        <span class="tag">Reflex game</span>
+        <span class="stack">HTML, CSS, JavaScript</span>
+      </p>
+    </section>
+
+    <section class="project-stage" aria-label="Game">
+      <div class="board-frame frame">
+        <div class="whack" id="board" role="group" aria-label="Whack-a-Mole board"></div>
+      </div>
+
+      <aside class="panel" aria-label="Game controls">
+        <p class="status" id="status" role="status" aria-live="polite">Press Start to play.</p>
+        <div class="whack-clock" aria-hidden="true"><div class="whack-clock__bar" id="time-bar"></div></div>
+        <dl class="scores scores--four">
+          <div class="score"><dt class="score__label">Time</dt><dd class="score__value" id="time">60</dd></div>
+          <div class="score"><dt class="score__label">Score</dt><dd class="score__value" id="score">0</dd></div>
+          <div class="score"><dt class="score__label">Speed</dt><dd class="score__value" id="speed">1×</dd></div>
+          <div class="score"><dt class="score__label">Best</dt><dd class="score__value" id="best">0</dd></div>
+        </dl>
+        <ul class="whack-legend">
+          <li>
+            <svg class="whack-legend__icon" viewBox="0 0 100 100" aria-hidden="true"><use href="#mole-art"/></svg>
+            Mole: +10 points
+          </li>
+          <li>
+            <svg class="whack-legend__icon" viewBox="0 0 100 100" aria-hidden="true"><use href="#bomb-art"/></svg>
+            Bomb: game over
+          </li>
+        </ul>
+        <div class="panel-actions">
+          <button class="btn btn--solid" type="button" id="start" data-cursor="Play">Start</button>
+          <button class="btn" type="button" id="pause" disabled>Pause</button>
+          <button class="icon-btn sound-toggle" type="button" id="sound" aria-pressed="true" aria-label="Sound on. Switch sound off">
+            <svg class="icon icon--on" aria-hidden="true"><use href="../assets/icons.svg#volume"/></svg>
+            <svg class="icon icon--off" aria-hidden="true"><use href="../assets/icons.svg#volume-off"/></svg>
+          </button>
+        </div>
+        <details class="howto">
+          <summary>How to play</summary>
+          <ul class="howto__body">
+            <li>Hit a mole to score 10 points.</li>
+            <li>Don't hit a bomb. That ends the game.</li>
+            <li>You have 60 seconds.</li>
+            <li>In the last 20 seconds, everything moves twice as fast.</li>
+            <li>Your best score is saved on this device.</li>
+            <li>Keyboard: S to start, Space to pause, M to mute, 1 to 9 to hit a hole.</li>
+          </ul>
+        </details>
+      </aside>
+    </section>
+
+    <a class="next-project" href="connect-four.html" data-transition-title="Connect Four">
+      <span class="next-project__label">Next project
+        <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-up-right"/></svg>
+      </span>
+      <span class="next-project__title" data-text="Connect Four">Connect Four</span>
+    </a>
+  </main>
+
+  <!-- Character art, drawn once and reused by the holes and the legend -->
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <g id="mole-art">
+        <circle cx="26" cy="30" r="12" fill="#6a3fd9"/>
+        <circle cx="74" cy="30" r="12" fill="#6a3fd9"/>
+        <path d="M10 100C10 46 28 14 50 14s40 32 40 86z" fill="#8b5cff"/>
+        <ellipse cx="50" cy="78" rx="24" ry="20" fill="#eeeaf6" fill-opacity=".18"/>
+        <circle cx="50" cy="50" r="9" fill="#ffb38a"/>
+      </g>
+      <g id="bomb-art">
+        <path d="M44 22h12v10H44z" fill="#eeeaf6" fill-opacity=".85"/>
+        <circle cx="50" cy="64" r="32" fill="#11121f" stroke="#eeeaf6" stroke-width="5"/>
+        <path d="M50 22c0-10 8-14 18-10" fill="none" stroke="#ffb38a" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="70" cy="11" r="5" fill="#ffb38a"/>
+        <path d="M33 56c3-7 9-11 16-12" fill="none" stroke="#eeeaf6" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
+      </g>
+    </defs>
+  </svg>
+
+  <dialog id="result-dialog" aria-labelledby="result-title">
+    <h2 id="result-title"></h2>
+    <p id="result-text"></p>
+    <p id="result-score" class="result-score"></p>
+    <p id="result-record" class="result-record" hidden>New high score!</p>
+    <div class="dialog-actions">
+      <button class="btn btn--solid" type="button" id="play-again" autofocus>Play again</button>
+      <a class="btn" href="../index.html#work" data-transition-title="Work">All work</a>
+    </div>
+  </dialog>
+
+  <noscript><p>This project needs JavaScript to run.</p></noscript>
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>

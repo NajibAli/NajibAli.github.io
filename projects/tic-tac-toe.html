@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tic Tac Toe | Najib Ali</title>
+  <meta name="description" content="Tic Tac Toe for two players, built with HTML, CSS and JavaScript by Najib Ali. Take turns to get three in a row.">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tic Tac Toe | Najib Ali">
+  <meta property="og:description" content="Two players take turns to get three in a row.">
+  <meta property="og:url" content="https://najibali.github.io/projects/tic-tac-toe.html">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      try {
+        theme = localStorage.getItem('theme');
+        if (sessionStorage.getItem('curtain') === '1') root.classList.add('is-covered');
+      } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/projects/tic-tac-toe.css">
+  <script type="module" src="../js/projects/tic-tac-toe.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="project-header">
+    <a class="back-link" href="../index.html#work" data-transition-title="Work">
+      <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-left"/></svg>
+      All work
+    </a>
+    <div class="project-header__end">
+      <span>Najib Ali</span>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="../assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="../assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero__orb" aria-hidden="true"></div>
+      <h1 class="project-title h-section" id="project-title" data-reveal="letters">Tic Tac Toe</h1>
+      <p class="project-description">Two players take turns to get three in a row.</p>
+      <p class="project-meta">
+        <span class="tag">Game for two</span>
+        <span class="stack">HTML, CSS, JavaScript</span>
+      </p>
+    </section>
+
+    <section class="project-stage" aria-label="Game">
+      <div class="board-frame frame">
+        <div class="ttt" id="board">
+          <svg class="ttt__grid" viewBox="0 0 300 300" aria-hidden="true">
+            <path pathLength="1" d="M100 14V286"/>
+            <path pathLength="1" d="M200 14V286"/>
+            <path pathLength="1" d="M14 100H286"/>
+            <path pathLength="1" d="M14 200H286"/>
+          </svg>
+          <div class="ttt__cells" role="group" aria-label="Tic Tac Toe board"></div>
+          <svg class="ttt__win" viewBox="0 0 300 300" aria-hidden="true">
+            <line pathLength="1" x1="0" y1="0" x2="0" y2="0"/>
+          </svg>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Game controls">
+        <p class="status" id="status" role="status" aria-live="polite">X's turn</p>
+        <dl class="scores">
+          <div class="score"><dt class="score__label">X wins</dt><dd class="score__value" id="score-x">0</dd></div>
+          <div class="score"><dt class="score__label">Draws</dt><dd class="score__value" id="score-draws">0</dd></div>
+          <div class="score"><dt class="score__label">O wins</dt><dd class="score__value" id="score-o">0</dd></div>
+        </dl>
+        <div class="panel-actions">
+          <button class="btn btn--solid" type="button" id="new-game" data-cursor="Play">New game</button>
+          <button class="icon-btn sound-toggle" type="button" id="sound" aria-pressed="true" aria-label="Sound on. Switch sound off">
+            <svg class="icon icon--on" aria-hidden="true"><use href="../assets/icons.svg#volume"/></svg>
+            <svg class="icon icon--off" aria-hidden="true"><use href="../assets/icons.svg#volume-off"/></svg>
+          </button>
+        </div>
+        <details class="howto">
+          <summary>How to play</summary>
+          <div class="howto__body">
+            <p>Two players share this device and take turns. X always starts. Get three of your marks in a row, across, down or diagonally, to win. If all nine squares fill up without a winner, it's a draw.</p>
+            <p>Keyboard: arrow keys move between squares, Enter or Space places a mark.</p>
+          </div>
+        </details>
+      </aside>
+    </section>
+
+    <a class="next-project" href="whack-a-mole.html" data-transition-title="Whack-a-Mole">
+      <span class="next-project__label">Next project
+        <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-up-right"/></svg>
+      </span>
+      <span class="next-project__title" data-text="Whack-a-Mole">Whack-a-Mole</span>
+    </a>
+  </main>
+
+  <noscript><p>This project needs JavaScript to run.</p></noscript>
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>

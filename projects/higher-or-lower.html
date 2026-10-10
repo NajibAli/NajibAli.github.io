@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Higher or Lower | Najib Ali</title>
+  <meta name="description" content="Higher or Lower, a dice game built with HTML, CSS and JavaScript by Najib Ali. Guess whether the next roll of the dice will be higher or lower.">
+  <meta name="theme-color" content="#090A14">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Higher or Lower | Najib Ali">
+  <meta property="og:description" content="Guess whether the next roll of the dice will be higher or lower.">
+  <meta property="og:url" content="https://najibali.github.io/projects/higher-or-lower.html">
+  <meta property="og:image" content="https://najibali.github.io/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (function () {
+      var root = document.documentElement, theme;
+      try {
+        theme = localStorage.getItem('theme');
+        if (sessionStorage.getItem('curtain') === '1') root.classList.add('is-covered');
+      } catch (error) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      root.dataset.theme = theme;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#F3F1F8' : '#090A14';
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/projects/higher-or-lower.css">
+  <script type="module" src="../js/projects/higher-or-lower.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="project-header">
+    <a class="back-link" href="../index.html#work" data-transition-title="Work">
+      <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-left"/></svg>
+      All work
+    </a>
+    <div class="project-header__end">
+      <span>Najib Ali</span>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="../assets/icons.svg#sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="../assets/icons.svg#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="project-main">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero__orb" aria-hidden="true"></div>
+      <h1 class="project-title h-section" id="project-title" data-reveal="letters">Higher or Lower</h1>
+      <p class="project-description">Guess whether the next roll of the dice will be higher or lower.</p>
+      <p class="project-meta">
+        <span class="tag">Dice game</span>
+        <span class="stack">HTML, CSS, JavaScript</span>
+      </p>
+    </section>
+
+    <section class="project-stage" aria-label="Game">
+      <div class="board-frame frame">
+        <div class="hol" id="board">
+          <div class="hol__dice" id="dice" role="img" aria-label="The dice have not been rolled yet">
+            <div class="die" data-die="0"><div class="die__cube"></div></div>
+            <div class="hol__total">
+              <span class="hol__badge" id="badge" aria-hidden="true"></span>
+              <span class="hol__total-value" id="total" aria-hidden="true">–</span>
+              <span class="hol__previous" id="previous" aria-hidden="true">&nbsp;</span>
+            </div>
+            <div class="die" data-die="1"><div class="die__cube"></div></div>
+          </div>
+
+          <div class="hol__actions">
+            <button class="btn btn--solid hol__action" type="button" id="roll" data-cursor="Play">Roll</button>
+            <button class="btn hol__action" type="button" id="higher" data-cursor="Play" hidden>Higher</button>
+            <button class="btn hol__action" type="button" id="lower" data-cursor="Play" hidden>Lower</button>
+          </div>
+
+          <div class="hol__meters">
+            <div class="hol__meter">
+              <span class="small">Credits</span>
+              <span class="hol__dots" id="credit-dots" aria-hidden="true"></span>
+            </div>
+            <div class="hol__meter">
+              <span class="small">Streak</span>
+              <span class="hol__segments" id="streak-segments" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="hol__bonus">
+            <div class="hol__reel" aria-hidden="true">
+              <div class="hol__reel-track" id="reel"></div>
+            </div>
+            <button class="btn hol__spin" type="button" id="spin" disabled data-cursor="Play">Spin</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Game controls">
+        <p class="status" id="status" role="status" aria-live="polite">Roll the dice to get your starting number.</p>
+        <dl class="scores">
+          <div class="score"><dt class="score__label">Score</dt><dd class="score__value" id="score">0</dd></div>
+          <div class="score"><dt class="score__label">Credits</dt><dd class="score__value" id="credits">10</dd></div>
+          <div class="score"><dt class="score__label">Streak</dt><dd class="score__value" id="streak">0</dd></div>
+        </dl>
+        <div class="panel-actions">
+          <button class="btn btn--solid" type="button" id="new-game">New game</button>
+          <button class="icon-btn sound-toggle" type="button" id="sound" aria-pressed="true" aria-label="Sound on. Switch sound off">
+            <svg class="icon icon--on" aria-hidden="true"><use href="../assets/icons.svg#volume"/></svg>
+            <svg class="icon icon--off" aria-hidden="true"><use href="../assets/icons.svg#volume-off"/></svg>
+          </button>
+        </div>
+        <section class="leaderboard" aria-labelledby="leaderboard-title">
+          <h2 class="leaderboard__title" id="leaderboard-title">Leaderboard</h2>
+          <ol class="leaderboard__list" id="leaderboard"></ol>
+          <p class="small" id="leaderboard-empty">No scores yet. Finish a game to add yours.</p>
+        </section>
+        <details class="howto">
+          <summary>How to play</summary>
+          <ul class="howto__body">
+            <li>You start with 10 credits.</li>
+            <li>Roll to get a starting number, then guess if the next roll will be higher or lower.</li>
+            <li>A correct guess earns 5 points. A tie counts as correct.</li>
+            <li>A wrong guess costs 1 credit and resets your streak.</li>
+            <li>Guess right 5 times in a row to unlock a bonus spin. It adds a random number from 5 to 25, multiplied by 10, to your score.</li>
+            <li>The game ends when you run out of credits. Then you can add your name to the leaderboard.</li>
+          </ul>
+        </details>
+      </aside>
+    </section>
+
+    <a class="next-project" href="tic-tac-toe.html" data-transition-title="Tic Tac Toe">
+      <span class="next-project__label">Next project
+        <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow-up-right"/></svg>
+      </span>
+      <span class="next-project__title" data-text="Tic Tac Toe">Tic Tac Toe</span>
+    </a>
+  </main>
+
+  <dialog id="game-over-dialog" aria-labelledby="game-over-title">
+    <form id="score-form" method="dialog">
+      <h2 id="game-over-title">Game over</h2>
+      <p>You ran out of credits.</p>
+      <p class="final-score" id="final-score"></p>
+      <label class="field" for="player-name">Your name</label>
+      <input class="field__input" id="player-name" name="name" type="text" maxlength="20" autocomplete="nickname" required>
+      <div class="dialog-actions">
+        <button class="btn btn--solid" type="submit">Save score</button>
+        <button class="btn" type="button" id="skip-score">Play again</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p>This project needs JavaScript to run.</p></noscript>
+  <div class="grain" aria-hidden="true"></div>
+</body>
+</html>
